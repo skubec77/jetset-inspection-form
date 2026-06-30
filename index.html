@@ -795,16 +795,6 @@
     <h2 class="card-title">Reformer Breakdown</h2>
     <div id="reformerBreakdown"></div>
   </div>
-
-  <div class="card">
-    <h2 class="card-title">Email Distribution</h2>
-    <p class="card-sub">During testing, all reports route to <strong>stevek@system4.com</strong>. Production routing (JETSET HQ, location manager, your team, inspector copy) will be enabled when the backend goes live.</p>
-    <div style="font-size: 14px; line-height: 1.8; padding: 12px 14px; background: #fff7e6; border: 1px solid var(--warn); border-radius: 8px;">
-      <strong style="display:block; margin-bottom:6px; color:#5a3f00;">🧪 Test Mode</strong>
-      ✉️ stevek@system4.com (single test recipient)<br/>
-      <span style="font-size:12px; color:var(--ink-soft); display:block; margin-top:6px;">Inspector: <span id="inspectorEmailEcho">—</span> · Location: <span id="locationEmail">—</span></span>
-    </div>
-  </div>
 </section>
 
 <!-- ============== SCREEN 6: SIGN-OFF ============== -->
@@ -1917,8 +1907,11 @@ function buildReview() {
     breakdown.appendChild(row);
   });
 
-  document.getElementById('locationEmail').textContent = `${state.locationLabel} Studio Manager`;
-  document.getElementById('inspectorEmailEcho').textContent = state.inspector.email;
+  // (Email Distribution preview card removed — guarded to remain safe if elements gone)
+  const _locEmail = document.getElementById('locationEmail');
+  if (_locEmail) _locEmail.textContent = `${state.locationLabel} Studio Manager`;
+  const _inspEmail = document.getElementById('inspectorEmailEcho');
+  if (_inspEmail) _inspEmail.textContent = state.inspector.email;
 }
 
 // ---------- SCREEN 6: SIGN-OFF ----------
